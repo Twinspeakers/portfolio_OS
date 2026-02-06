@@ -1,0 +1,144 @@
+---
+title: "Codex Prompt — Portfolio OS Styling Direction"
+slug: "codex-prompt-portfolio-os-styling"
+summary: "A copy-paste prompt for Codex to apply a blended shadcn-dashboard + Unreal landing-page style to the Portfolio OS."
+status: "active"
+tags: ["codex", "prompt", "styling", "tailwind", "shadcn", "nextjs", "gsap"]
+updatedAt: "2026-02-06"
+---
+
+# Prompt for Codex: Style the Portfolio OS (shadcn Dashboard × Unreal Landing)
+
+You are working in a Next.js (App Router) project called **Portfolio OS** using **Tailwind** + **shadcn/ui**. The site currently “works” but feels unpolished because it reads as a single column and lacks strong visual hierarchy. Apply a styling direction that blends:
+
+- **shadcn Dashboard example** for the core UI language (neutral palette, clean cards, spacing, typography hierarchy):  
+  https://ui.shadcn.com/examples/dashboard
+- **Unreal Engine landing page** for “energy accents” (hero layout, bolder typography treatment, subtle gradients in background/text/icon accents):  
+  https://www.unrealengine.com/en-US
+
+## High-level styling direction (lock this in)
+Overall vibe: **Premium neutral dashboard + Unreal-style energy accents**.  
+Most UI stays calm/neutral; “wow” comes from **hero headline**, **subtle background gradients**, and **accent frames** on a few key cards (Featured/Lab/3D).
+
+## Deliverables
+1. Update layout/spacing so Dashboard becomes a responsive multi-column grid at large breakpoints (fix “one column” feel).
+2. Add a subtle global background gradient layer (readable, not neon).
+3. Standardize card styling (radius/padding/border/shadow/hover) across Dashboard/Projects/Links/Lab.
+4. Add one hero accent treatment (gradient text or accent frame), used sparingly.
+5. Keep changes aligned with Tailwind + shadcn patterns (do not add a totally new design system). Prefer small reusable utility classes or Tailwind patterns over heavy custom CSS.
+
+## Layout rules (Dashboard)
+Refactor the Dashboard page to use this structure:
+
+- **Row 1:** 4 stat cards (responsive)
+- **Row 2:** 2 columns on `lg`: Featured Projects (2/3) + Quick Links (1/3)
+- **Row 3:** Wide 3D “Hero Canvas” card/section
+
+Use a layout like:
+
+```tsx
+<div className="grid gap-6">
+  <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">...</section>
+  <section className="grid gap-6 lg:grid-cols-3">
+    <div className="lg:col-span-2">...</div>
+    <div className="lg:col-span-1">...</div>
+  </section>
+  <section>...</section>
+</div>
+```
+
+## Typography rules
+- Keep body text very readable (shadcn dashboard vibe).
+- Hero/heading feels slightly more “Unreal”: bigger size, tighter tracking, strong hierarchy.
+- Use a single sans family (Geist Sans or Inter). Avoid adding lots of fonts.
+
+Example hero text pattern:
+
+```tsx
+<h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+  <span className="bg-gradient-to-r from-foreground to-foreground/60 bg-clip-text text-transparent">
+    Portfolio OS
+  </span>
+</h1>
+<p className="text-muted-foreground mt-2 max-w-2xl">
+  Your projects, tools, and interactive demos — in one place.
+</p>
+```
+
+## Global background gradients (subtle)
+Add a subtle background gradient layer in `globals.css` (or equivalent). Keep it very soft so cards remain readable.
+
+Target effect: faint radial gradients behind the app, similar “energy” to Unreal’s landing page but muted.
+
+Example CSS (adapt to project tokens):
+
+```css
+body {
+  background:
+    radial-gradient(900px circle at 10% 10%, hsl(var(--primary) / 0.10), transparent 50%),
+    radial-gradient(700px circle at 90% 20%, hsl(220 90% 60% / 0.10), transparent 55%),
+    hsl(var(--background));
+}
+```
+
+## Card styling rules (shadcn language)
+Standardize:
+- consistent radius (e.g. `--radius: 0.75rem`)
+- consistent padding (e.g. `p-5` or `p-6`)
+- subtle border + soft shadow
+- hover: tiny lift + slightly stronger border
+
+Prefer Tailwind classes on the Card wrapper (or add a small helper class). Example concept:
+
+```css
+.card-hover {
+  transition: transform 150ms ease, border-color 150ms ease;
+}
+.card-hover:hover {
+  transform: translateY(-1px);
+}
+```
+
+## “Energy accent” frame (use sparingly)
+Implement an optional accent frame that can be applied to:
+- 3D hero card
+- Lab scene cards
+- Featured project highlight
+
+Example concept (can be a utility class):
+
+```css
+.accent-frame {
+  position: relative;
+}
+.accent-frame::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, hsl(var(--primary) / .55), hsl(220 90% 60% / .55));
+  opacity: .35;
+  pointer-events: none;
+}
+```
+
+Keep accents limited—do NOT apply to every card.
+
+## Scope constraints
+- Do not redesign the entire app. Keep existing routing/pages/components.
+- Focus on: **Dashboard grid + global background + consistent cards + one accent treatment**.
+- Do not introduce new libraries unless necessary (Tailwind + shadcn are enough).
+- Ensure the design remains readable in dark mode (if present) and accessible.
+
+## Implementation checklist
+- [ ] Update Dashboard layout to multi-column grid at `lg` and above
+- [ ] Add subtle global background gradients
+- [ ] Normalize Card spacing/radius/border/shadow/hover across pages
+- [ ] Add one hero accent (gradient text OR accent-frame on 3D card)
+- [ ] Verify Projects index (cards + filters) looks consistent
+- [ ] Verify Links page uses the same card language
+- [ ] Verify Lab page scene cards feel “special” but not loud
+
+Output:
+- Provide the updated files as a patch-style set of changes (only changed/new files).
+- Briefly describe what changed (1–2 bullets per area).

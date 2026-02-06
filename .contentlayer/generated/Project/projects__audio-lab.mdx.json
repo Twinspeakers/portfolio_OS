@@ -1,0 +1,37 @@
+{
+  "title": "Audio Lab",
+  "slug": "audio-lab",
+  "summary": "An experimental toolkit for audio processing prototypes and UI concepts.",
+  "status": "paused",
+  "tags": [
+    "audio",
+    "dsp",
+    "ui"
+  ],
+  "stack": [
+    "React",
+    "Web Audio API",
+    "TypeScript"
+  ],
+  "featured": false,
+  "createdAt": "2025-11-11T00:00:00.000Z",
+  "updatedAt": "2026-01-28T00:00:00.000Z",
+  "links": {
+    "repo": "https://github.com/example/audio-lab",
+    "docs": "https://docs.example.com/audio-lab"
+  },
+  "body": {
+    "raw": "\n## Overview\n\nAudio Lab is where interactive sound concepts are tested before production use.\n\n## Current Work\n\n- Building a small node-based chain editor.\n- Prototyping waveform visualizations.\n- Experimenting with MIDI routing controls.\n\n```ts\nexport function normalizeGain(value: number) {\n  return Math.min(1, Math.max(0, value));\n}\n```",
+    "code": "var Component=(()=>{var u=Object.create;var r=Object.defineProperty;var p=Object.getOwnPropertyDescriptor;var m=Object.getOwnPropertyNames;var h=Object.getPrototypeOf,x=Object.prototype.hasOwnProperty;var g=(n,e)=>()=>(e||n((e={exports:{}}).exports,e),e.exports),b=(n,e)=>{for(var i in e)r(n,i,{get:e[i],enumerable:!0})},s=(n,e,i,a)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let o of m(e))!x.call(n,o)&&o!==i&&r(n,o,{get:()=>e[o],enumerable:!(a=p(e,o))||a.enumerable});return n};var f=(n,e,i)=>(i=n!=null?u(h(n)):{},s(e||!n||!n.__esModule?r(i,\"default\",{value:n,enumerable:!0}):i,n)),j=n=>s(r({},\"__esModule\",{value:!0}),n);var l=g((y,c)=>{c.exports=_jsx_runtime});var M={};b(M,{default:()=>_,frontmatter:()=>v});var t=f(l()),v={title:\"Audio Lab\",slug:\"audio-lab\",summary:\"An experimental toolkit for audio processing prototypes and UI concepts.\",status:\"paused\",tags:[\"audio\",\"dsp\",\"ui\"],stack:[\"React\",\"Web Audio API\",\"TypeScript\"],featured:!1,createdAt:\"2025-11-11\",updatedAt:\"2026-01-28\",links:{repo:\"https://github.com/example/audio-lab\",docs:\"https://docs.example.com/audio-lab\"}};function d(n){let e=Object.assign({h2:\"h2\",p:\"p\",ul:\"ul\",li:\"li\",pre:\"pre\",code:\"code\"},n.components);return(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(e.h2,{children:\"Overview\"}),`\n`,(0,t.jsx)(e.p,{children:\"Audio Lab is where interactive sound concepts are tested before production use.\"}),`\n`,(0,t.jsx)(e.h2,{children:\"Current Work\"}),`\n`,(0,t.jsxs)(e.ul,{children:[`\n`,(0,t.jsx)(e.li,{children:\"Building a small node-based chain editor.\"}),`\n`,(0,t.jsx)(e.li,{children:\"Prototyping waveform visualizations.\"}),`\n`,(0,t.jsx)(e.li,{children:\"Experimenting with MIDI routing controls.\"}),`\n`]}),`\n`,(0,t.jsx)(e.pre,{children:(0,t.jsx)(e.code,{className:\"language-ts\",children:`export function normalizeGain(value: number) {\n  return Math.min(1, Math.max(0, value));\n}\n`})})]})}function A(n={}){let{wrapper:e}=n.components||{};return e?(0,t.jsx)(e,Object.assign({},n,{children:(0,t.jsx)(d,n)})):d(n)}var _=A;return j(M);})();\n;return Component;"
+  },
+  "_id": "projects/audio-lab.mdx",
+  "_raw": {
+    "sourceFilePath": "projects/audio-lab.mdx",
+    "sourceFileName": "audio-lab.mdx",
+    "sourceFileDir": "projects",
+    "contentType": "mdx",
+    "flattenedPath": "projects/audio-lab"
+  },
+  "type": "Project",
+  "url": "/projects/audio-lab"
+}
