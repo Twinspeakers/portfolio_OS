@@ -8,7 +8,7 @@ type LinkCardProps = {
 
 export function LinkCard({ item }: LinkCardProps) {
   return (
-    <article className="surface-card card-hover p-5">
+    <article className="surface-ghost card-hover p-5">
       <div className="flex items-start justify-between gap-3">
         <div>
           <h3 className="font-medium">{item.name}</h3>

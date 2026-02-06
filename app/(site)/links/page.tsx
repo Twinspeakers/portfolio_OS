@@ -19,7 +19,7 @@ export default function LinksPage() {
 
   return (
     <div className="space-y-8">
-      <section className="surface-card space-y-3 p-5">
+      <section className="surface-elevated space-y-3 p-5">
         <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Favorites</p>
         <h2 className="text-2xl font-semibold">Pinned Links</h2>
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">

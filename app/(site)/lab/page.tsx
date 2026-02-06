@@ -25,18 +25,18 @@ export default function LabPage() {
       </section>
 
       <section className="grid gap-4 xl:grid-cols-2">
-        <div className="surface-card accent-frame p-5">
+        <div className="surface-elevated accent-frame p-5">
           <HeroOrbCard />
           <div className="mt-3 text-sm text-muted-foreground">Scene #1: ambient rotating object for hero placements.</div>
         </div>
 
-        <div className="surface-card accent-frame p-5">
+        <div className="surface-elevated accent-frame p-5">
           <GalaxyCard />
           <div className="mt-3 text-sm text-muted-foreground">Scene #2: interactive nodes concept for project graph navigation.</div>
         </div>
       </section>
 
-      <section className="surface-card p-5">
+      <section className="surface-elevated p-5">
         <p className="text-xs uppercase tracking-wide text-muted-foreground">Related projects</p>
         <div className="mt-2 flex gap-4 text-sm">
           <Link href="/projects/personal-os" className="text-cyan-300 hover:underline">Personal OS</Link>

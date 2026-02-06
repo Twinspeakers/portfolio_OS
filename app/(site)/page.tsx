@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { HeroOrbCard } from "@/components/three/HeroOrbCard";
+import { HeroSceneBanner } from "@/components/three/HeroSceneBanner";
 import { LinkCard } from "@/components/cards/LinkCard";
 import { ProjectCard } from "@/components/cards/ProjectCard";
 import { StatCard } from "@/components/cards/StatCard";
@@ -26,15 +26,10 @@ export default function DashboardPage() {
 
   return (
     <div className="grid gap-6">
-      <section className="surface-card overflow-hidden bg-gradient-to-br from-slate-950/70 via-slate-900/70 to-slate-950 p-6">
-        <p className="text-xs uppercase tracking-[0.3em] text-cyan-200/90">Dashboard</p>
-        <h1 className="hero-title mt-3">
-          <span>Portfolio OS</span>
-        </h1>
-        <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-          Your projects, tools, and interactive demos in one place.
-        </p>
-      </section>
+      <HeroSceneBanner
+        title="Portfolio OS"
+        description="Your projects, tools, and interactive demos in one place."
+      />
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label="Total Projects" value={totalProjects} />
@@ -43,34 +38,16 @@ export default function DashboardPage() {
         <StatCard label="Completed" value={stats.done} />
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-3">
-        <div className="space-y-4 lg:col-span-2">
-          <div className="flex items-center justify-between">
-            <h3 className="text-xl font-semibold">Featured Projects</h3>
-            <Link href="/projects" className="text-sm text-cyan-300 hover:underline">Browse library</Link>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {featured.map((project) => (
-              <ProjectCard key={project._id} project={project} />
-            ))}
-          </div>
+      <section className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-xl font-semibold">Featured Projects</h3>
+          <Link href="/projects" className="text-sm text-cyan-300 hover:underline">Browse library</Link>
         </div>
-
-        <div className="surface-card p-5 lg:col-span-1">
-          <div className="mb-4 flex items-center justify-between">
-            <h3 className="text-lg font-semibold">Quick Links</h3>
-            <Link href="/links" className="text-sm text-cyan-300 hover:underline">View all</Link>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {topLinks.map((item) => (
-              <LinkCard key={item.name} item={item} />
-            ))}
-          </div>
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {featured.map((project) => (
+            <ProjectCard key={project._id} project={project} />
+          ))}
         </div>
-      </section>
-
-      <section className="surface-card accent-frame p-5">
-        <HeroOrbCard />
       </section>
 
       <section className="space-y-4">
@@ -78,6 +55,18 @@ export default function DashboardPage() {
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {recent.map((project) => (
             <ProjectCard key={`recent-${project._id}`} project={project} />
+          ))}
+        </div>
+      </section>
+
+      <section className="surface-elevated p-5">
+        <div className="mb-4 flex items-center justify-between">
+          <h3 className="text-lg font-semibold">Quick Links</h3>
+          <Link href="/links" className="text-sm text-cyan-300 hover:underline">View all</Link>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {topLinks.map((item) => (
+            <LinkCard key={item.name} item={item} />
           ))}
         </div>
       </section>

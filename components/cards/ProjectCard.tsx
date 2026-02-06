@@ -17,7 +17,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const links = (project.links || {}) as { repo?: string; live?: string; docs?: string };
 
   return (
-    <article className="surface-card card-hover group p-5">
+    <article className="surface-ghost card-hover group p-5">
       <div className="mb-3 flex items-start justify-between gap-2">
         <Link href={project.url} className="text-lg font-semibold leading-tight hover:underline">
           {project.title}

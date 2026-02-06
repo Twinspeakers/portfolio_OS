@@ -38,12 +38,24 @@ a {
   @apply rounded-2xl border border-border/70 bg-card/80 shadow-panel backdrop-blur;
 }
 
+.surface-elevated {
+  @apply rounded-2xl border border-border/70 bg-card/80 shadow-panel backdrop-blur;
+}
+
+.surface-ghost {
+  @apply rounded-2xl border border-border/45 bg-transparent;
+}
+
 .card-hover {
   @apply transition duration-200;
 }
 
 .card-hover:hover {
   @apply -translate-y-0.5 border-border;
+}
+
+.surface-ghost.card-hover:hover {
+  @apply bg-card/35;
 }
 
 .accent-frame {

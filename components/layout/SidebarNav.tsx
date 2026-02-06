@@ -17,7 +17,7 @@ export function SidebarNav() {
   const pathname = usePathname();
 
   return (
-    <aside className="surface-card sticky top-4 h-[calc(100vh-2rem)] w-full p-4">
+    <aside className="surface-elevated sticky top-4 h-[calc(100vh-2rem)] w-full p-4">
       <div className="mb-8 px-2">
         <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Personal</p>
         <h1 className="mt-2 text-xl font-semibold">Portfolio OS</h1>

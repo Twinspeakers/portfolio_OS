@@ -63,7 +63,7 @@ export function ProjectsExplorer({ projects }: ProjectsExplorerProps) {
 
   return (
     <section className="space-y-6">
-      <div className="surface-card grid gap-3 p-5 md:grid-cols-[1fr_auto_auto]">
+      <div className="surface-elevated grid gap-3 p-5 md:grid-cols-[1fr_auto_auto]">
         <SearchInput value={search} onChange={setSearch} />
         <StatusSelect value={status} onChange={setStatus} />
         <SortSelect value={sort} onChange={setSort} />
@@ -79,7 +79,7 @@ export function ProjectsExplorer({ projects }: ProjectsExplorerProps) {
       </div>
 
       {filtered.length === 0 ? (
-        <p className="surface-card p-6 text-sm text-muted-foreground">
+        <p className="surface-elevated p-6 text-sm text-muted-foreground">
           No projects matched your filters.
         </p>
       ) : null}
