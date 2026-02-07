@@ -19,8 +19,8 @@ export default function ProjectsPage() {
     <div className="space-y-6">
       <section>
         <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Projects</p>
-        <h2 className="mt-2 text-3xl font-semibold">Project Library</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <h2 className="mt-4 text-6xl font-semibold">Project Library</h2>
+        <p className="mt-4 text-sm text-muted-foreground">
           Filter by status and tags, search by title or summary, and sort your catalog quickly.
         </p>
       </section>

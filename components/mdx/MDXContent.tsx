@@ -1,13 +1,15 @@
-"use client";
-
-import { useMDXComponent } from "next-contentlayer/hooks";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { MDXComponents } from "@/components/mdx/MDXComponents";
 
 type MDXContentProps = {
-  code: string;
+  source: string;
 };
 
-export function MDXContent({ code }: MDXContentProps) {
-  const Component = useMDXComponent(code);
-  return <Component components={MDXComponents} />;
+export function MDXContent({ source }: MDXContentProps) {
+  return (
+    <ReactMarkdown remarkPlugins={[remarkGfm]} components={MDXComponents}>
+      {source}
+    </ReactMarkdown>
+  );
 }

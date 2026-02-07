@@ -9,8 +9,9 @@ export function generateStaticParams() {
   return getProjects().map((project) => ({ slug: project.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const project = getProjectBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
 
   if (!project) {
     return { title: "Project not found" };
@@ -27,8 +28,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-export default function ProjectDetailPage({ params }: { params: { slug: string } }) {
-  const project = getProjectBySlug(params.slug);
+export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
 
   if (!project) {
     notFound();
@@ -71,7 +73,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
       </section>
 
       <section className="rounded-2xl border border-border/70 bg-card/80 p-5 shadow-panel">
-        <MDXContent code={project.body.code} />
+        <MDXContent source={project.body.raw} />
       </section>
     </article>
   );

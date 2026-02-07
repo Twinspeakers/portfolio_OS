@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.ts";
 
 :root {
   --radius: 0.75rem;
@@ -11,10 +10,30 @@
   --border: 213 20% 24%;
   --muted: 215 20% 17%;
   --muted-foreground: 214 14% 68%;
-  --primary: 188 95% 42%;
+  --primary: 88 95% 42%;
   --primary-foreground: 210 20% 9%;
   --accent: 215 30% 20%;
   --accent-foreground: 210 18% 95%;
+
+  /* Editor theme tokens (customize these to taste). */
+  --editor-bg: #161616;
+  --editor-fg: #d4d4d4;
+  --editor-caret: #4fc1ff;
+  --editor-selection: rgba(79, 193, 255, 0.25);
+  --editor-gutter: #6b7280;
+  --editor-border: rgba(148, 163, 184, 0.25);
+  --editor-heading-1: #4fc1ff;
+  --editor-heading-2: #4fc1ff;
+  --editor-heading-3: #4fc1ff;
+  --editor-strong: #4fc1ff;
+  --editor-emphasis: #d7ba7d;
+  --editor-list: #4fc1ff;
+  --editor-code: #ce9178;
+  --editor-link: #4fc1ff;
+  --editor-quote: #ffffff;
+  --editor-blockquote: #6a9955;
+  --editor-separator: #808080;
+  --editor-comment: #6a9955;
 }
 
 * {
@@ -80,4 +99,105 @@ a {
 
 .hero-title span {
   @apply bg-gradient-to-r from-foreground via-foreground to-foreground/60 bg-clip-text text-transparent;
+}
+
+/* Markdown preview (used by /editor). Intentionally lightweight (no typography plugin required). */
+.markdown-preview {
+  @apply text-foreground;
+}
+
+.markdown-preview h1,
+.markdown-preview h2,
+.markdown-preview h3 {
+  @apply mt-6 scroll-mt-24 font-semibold tracking-tight;
+}
+
+.markdown-preview h1 {
+  @apply text-2xl;
+}
+
+.markdown-preview h2 {
+  @apply text-xl;
+}
+
+.markdown-preview h3 {
+  @apply text-lg;
+}
+
+.markdown-preview p {
+  @apply mt-3 leading-6 text-foreground/90;
+}
+
+.markdown-preview a {
+  @apply text-primary underline underline-offset-4;
+}
+
+.markdown-preview ul {
+  @apply mt-3 list-disc pl-6;
+}
+
+.markdown-preview ol {
+  @apply mt-3 list-decimal pl-6;
+}
+
+.markdown-preview li {
+  @apply mt-1;
+}
+
+.markdown-preview blockquote {
+  @apply mt-4 rounded-2xl border border-border bg-card/35 p-4 text-foreground/90;
+}
+
+.markdown-preview pre {
+  @apply mt-4 overflow-auto rounded-2xl border border-border bg-background p-4 text-foreground;
+}
+
+.markdown-preview code {
+  @apply rounded-lg border border-border bg-background px-2 py-0.5;
+}
+
+.markdown-preview pre code {
+  @apply border-0 bg-transparent p-0;
+}
+
+
+.markdown-preview hr {
+  @apply my-6 border-border;
+}
+
+.markdown-preview table {
+  @apply mt-4 w-full overflow-hidden rounded-2xl border border-border;
+  border-collapse: collapse;
+}
+
+.markdown-preview thead {
+  @apply bg-card/35;
+}
+
+.markdown-preview th {
+  @apply px-3 py-2 text-left text-sm font-medium text-foreground;
+}
+
+.markdown-preview td {
+  @apply px-3 py-2 align-top text-sm text-foreground/90;
+}
+
+.markdown-preview tr + tr td {
+  @apply border-t border-border;
+}
+
+.markdown-preview ul.contains-task-list {
+  @apply list-none pl-0;
+}
+
+.markdown-preview li.task-list-item {
+  @apply flex items-start gap-2;
+}
+
+.markdown-preview li.task-list-item input[type="checkbox"] {
+  @apply mt-1;
+}
+
+.markdown-preview img {
+  @apply mt-4 max-w-full rounded-2xl border border-border;
 }

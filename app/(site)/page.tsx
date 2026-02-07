@@ -40,7 +40,7 @@ export default function DashboardPage() {
 
       <section className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold">Featured Projects</h3>
+          <h3 className="text-3xl font-semibold">Featured Projects</h3>
           <Link href="/projects" className="text-sm text-cyan-300 hover:underline">Browse library</Link>
         </div>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">

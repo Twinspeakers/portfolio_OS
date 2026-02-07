@@ -2,25 +2,44 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, FolderOpen, Link2, Orbit } from "lucide-react";
+import { LayoutDashboard, FolderOpen, FileText, Link2, Orbit, PanelLeftClose } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { navItems } from "@/lib/site-data";
 
 const icons = {
   Dashboard: LayoutDashboard,
   Projects: FolderOpen,
+  Editor: FileText,
   Links: Link2,
   Lab: Orbit
 };
 
-export function SidebarNav() {
+type SidebarNavProps = {
+  onCollapse?: () => void;
+};
+
+export function SidebarNav({ onCollapse }: SidebarNavProps) {
   const pathname = usePathname();
 
   return (
     <aside className="surface-elevated sticky top-4 h-[calc(100vh-2rem)] w-full p-4">
-      <div className="mb-8 px-2">
-        <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Personal</p>
-        <h1 className="mt-2 text-xl font-semibold">Portfolio OS</h1>
+      <div className="mb-8 flex items-start justify-between gap-3 px-2">
+        <div>
+          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Personal</p>
+          <h1 className="mt-2 text-xl font-semibold">Portfolio OS</h1>
+        </div>
+
+        {onCollapse ? (
+          <button
+            type="button"
+            onClick={onCollapse}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background transition hover:bg-accent"
+            aria-label="Collapse to top bar"
+            title="Collapse to top bar"
+          >
+            <PanelLeftClose className="h-4 w-4" />
+          </button>
+        ) : null}
       </div>
       <nav className="space-y-2">
         {navItems.map((item) => {

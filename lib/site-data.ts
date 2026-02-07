@@ -22,6 +22,7 @@ export const quickLinks: QuickLink[] = [
 export const navItems = [
   { label: "Dashboard", href: "/" },
   { label: "Projects", href: "/projects" },
+  { label: "Editor", href: "/editor" },
   { label: "Links", href: "/links" },
   { label: "Lab", href: "/lab" }
 ];
