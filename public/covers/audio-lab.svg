@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0f1e"/>
+      <stop offset="0.6" stop-color="#1b1030"/>
+      <stop offset="1" stop-color="#2a0a0a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="35%" cy="40%" r="75%">
+      <stop offset="0" stop-color="#f59e0b" stop-opacity="0.33"/>
+      <stop offset="0.55" stop-color="#f59e0b" stop-opacity="0.09"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+
+  <!-- Simple waveform -->
+  <g opacity="0.75" fill="none" stroke="#fbbf24" stroke-width="6" stroke-linecap="round">
+    <path d="M120 520 C 220 420, 360 420, 460 520 S 700 620, 820 520 S 1080 420, 1240 520 S 1400 620, 1480 540" opacity="0.35"/>
+    <path d="M120 560 C 240 460, 360 460, 480 560 S 740 660, 860 560 S 1120 460, 1260 560 S 1420 660, 1480 600"/>
+    <path d="M120 600 C 260 500, 380 500, 520 600 S 780 700, 900 600 S 1160 500, 1280 600 S 1440 700, 1480 640" opacity="0.35"/>
+  </g>
+
+  <g font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#e5e7eb">
+    <text x="120" y="220" font-size="64" font-weight="700" letter-spacing="0.5">Audio Lab</text>
+    <text x="120" y="280" font-size="26" fill="#94a3b8" letter-spacing="2">PLACEHOLDER COVER</text>
+  </g>
+
+  <g opacity="0.55" stroke="#94a3b8" stroke-width="2">
+    <rect x="118" y="140" width="540" height="190" rx="24" fill="none"/>
+  </g>
+</svg>

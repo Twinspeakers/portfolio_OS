@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXContent } from "@/components/mdx/MDXContent";
+import { GalleryCarousel } from "@/components/projects/GalleryCarousel";
 import { getProjectBySlug, getProjects } from "@/lib/contentlayer";
-import { formatDate } from "@/lib/utils";
+import { formatDate, withBasePath } from "@/lib/utils";
 
 export function generateStaticParams() {
   return getProjects().map((project) => ({ slug: project.slug }));
@@ -37,12 +38,23 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
   }
 
   const links = (project.links || {}) as { repo?: string; live?: string; docs?: string };
+  const coverSrc = project.cover ? withBasePath(project.cover) : null;
+  const coverAlt = project.coverAlt || `${project.title} cover image`;
 
   return (
     <article className="space-y-6">
       <Link href="/projects" className="inline-flex text-sm text-cyan-300 hover:underline">
         Back to Projects
       </Link>
+
+      {coverSrc ? (
+        <section className="relative overflow-hidden rounded-2xl border border-border/70 bg-card/80 shadow-panel">
+          <div className="aspect-[21/9] w-full">
+            <img src={coverSrc} alt={coverAlt} className="h-full w-full object-cover" loading="lazy" />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/15 to-transparent" />
+        </section>
+      ) : null}
 
       <header className="space-y-3 rounded-2xl border border-border/70 bg-card/80 p-5 shadow-panel">
         <h1 className="text-3xl font-semibold">{project.title}</h1>
@@ -71,6 +83,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           </div>
         </div>
       </section>
+
+      {project.gallery?.length ? <GalleryCarousel items={project.gallery} /> : null}
 
       <section className="rounded-2xl border border-border/70 bg-card/80 p-5 shadow-panel">
         <MDXContent source={project.body.raw} />

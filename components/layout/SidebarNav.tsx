@@ -51,6 +51,7 @@ export function SidebarNav({ onCollapse }: SidebarNavProps) {
             <Link
               key={item.href}
               href={item.href}
+              prefetch={false}
               className={cn(
                 "flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-muted-foreground transition",
                 "hover:bg-accent hover:text-accent-foreground",

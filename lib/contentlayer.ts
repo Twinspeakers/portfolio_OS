@@ -4,6 +4,12 @@ import matter from "gray-matter";
 
 export type ProjectStatus = "active" | "paused" | "done";
 
+export type ProjectGalleryItem = {
+  src: string;
+  alt?: string;
+  caption?: string;
+};
+
 type ProjectLinks = {
   repo?: string;
   live?: string;
@@ -16,6 +22,9 @@ export type ProjectDoc = {
   title: string;
   slug: string;
   summary: string;
+  cover?: string;
+  coverAlt?: string;
+  gallery?: ProjectGalleryItem[];
   status: ProjectStatus;
   tags: string[];
   stack: string[];
@@ -32,9 +41,39 @@ export type ProjectSort = "recent" | "featured" | "alpha";
 
 const projectsDir = path.join(process.cwd(), "content", "projects");
 
+function normalizeGallery(value: unknown): ProjectGalleryItem[] | undefined {
+  if (!value) return undefined;
+  if (!Array.isArray(value)) return undefined;
+
+  const items = value
+    .map((entry) => {
+      if (!entry) return null;
+      if (typeof entry === "string") {
+        return { src: entry } as ProjectGalleryItem;
+      }
+      if (typeof entry === "object") {
+        const obj = entry as Record<string, unknown>;
+        const src = typeof obj.src === "string" ? obj.src : typeof obj.url === "string" ? obj.url : "";
+        if (!src) return null;
+
+        const alt = typeof obj.alt === "string" ? obj.alt : undefined;
+        const caption = typeof obj.caption === "string" ? obj.caption : undefined;
+        return { src, alt, caption } as ProjectGalleryItem;
+      }
+      return null;
+    })
+    .filter(Boolean) as ProjectGalleryItem[];
+
+  return items.length > 0 ? items : undefined;
+}
+
 function normalizeProject(data: Record<string, unknown>, body: string, fileName: string): ProjectDoc {
   const slug = String(data.slug || fileName.replace(/\.mdx?$/, ""));
   const status = String(data.status || "active") as ProjectStatus;
+
+  const cover = typeof data.cover === "string" ? data.cover : undefined;
+  const coverAlt = typeof data.coverAlt === "string" ? data.coverAlt : undefined;
+  const gallery = normalizeGallery(data.gallery);
 
   return {
     _id: slug,
@@ -42,6 +81,9 @@ function normalizeProject(data: Record<string, unknown>, body: string, fileName:
     title: String(data.title || slug),
     slug,
     summary: String(data.summary || ""),
+    cover,
+    coverAlt,
+    gallery,
     status: status === "active" || status === "paused" || status === "done" ? status : "active",
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     stack: Array.isArray(data.stack) ? data.stack.map(String) : [],

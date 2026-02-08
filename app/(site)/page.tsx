@@ -4,7 +4,7 @@ import { HeroSceneBanner } from "@/components/three/HeroSceneBanner";
 import { LinkCard } from "@/components/cards/LinkCard";
 import { ProjectCard } from "@/components/cards/ProjectCard";
 import { StatCard } from "@/components/cards/StatCard";
-import { getFeaturedProjects, getProjectStats, getRecentProjects } from "@/lib/contentlayer";
+import { getProjects } from "@/lib/contentlayer";
 import { quickLinks } from "@/lib/site-data";
 
 export const metadata: Metadata = {
@@ -18,9 +18,14 @@ export const metadata: Metadata = {
 };
 
 export default function DashboardPage() {
-  const featured = getFeaturedProjects().slice(0, 3);
-  const recent = getRecentProjects(4);
-  const stats = getProjectStats();
+  const projects = getProjects();
+  const featured = projects.filter((project) => project.featured).slice(0, 3);
+  const recent = projects.slice(0, 4);
+  const stats = {
+    active: projects.filter((project) => project.status === "active").length,
+    paused: projects.filter((project) => project.status === "paused").length,
+    done: projects.filter((project) => project.status === "done").length
+  };
   const topLinks = quickLinks.slice(0, 8);
   const totalProjects = stats.active + stats.paused + stats.done;
 

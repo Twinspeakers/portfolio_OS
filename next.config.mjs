@@ -14,7 +14,12 @@ const nextConfig = {
 
   // GitHub Pages serves your site from /<repo>/
   basePath: isProd ? `/${repo}` : "",
-  assetPrefix: isProd ? `/${repo}/` : ""
+  assetPrefix: isProd ? `/${repo}/` : "",
+
+  // Make basePath available to client components for GitHub Pages-safe asset URLs
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isProd ? `/${repo}` : ""
+  }
 };
 
 export default nextConfig;

@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useEffect, useRef, useState } from "react";
 
 const CanvasShell = dynamic(() => import("@/components/three/CanvasShell").then((m) => m.CanvasShell), {
   ssr: false,
@@ -22,12 +23,40 @@ export function HeroSceneBanner({
   title,
   description
 }: HeroSceneBannerProps) {
+  const rootRef = useRef<HTMLElement | null>(null);
+  const [shouldRenderScene, setShouldRenderScene] = useState(false);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+
+    if (typeof IntersectionObserver === "undefined") {
+      setShouldRenderScene(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const isVisible = entries.some((entry) => entry.isIntersecting);
+        setShouldRenderScene(isVisible);
+      },
+      { rootMargin: "120px 0px" }
+    );
+
+    observer.observe(root);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="surface-elevated relative overflow-hidden p-0">
+    <section ref={rootRef} className="surface-elevated relative overflow-hidden p-0">
       <div className="absolute inset-0">
-        <CanvasShell heightClass="h-[240px]" framed={false} className="h-full">
-          <SceneHeroOrb />
-        </CanvasShell>
+        {shouldRenderScene ? (
+          <CanvasShell heightClass="h-[240px]" framed={false} className="h-full">
+            <SceneHeroOrb />
+          </CanvasShell>
+        ) : (
+          <div className="h-full w-full bg-gradient-to-br from-slate-950 via-slate-900 to-cyan-950" />
+        )}
       </div>
 
       {/* readability mask */}

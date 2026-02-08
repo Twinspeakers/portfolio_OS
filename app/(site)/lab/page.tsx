@@ -40,7 +40,6 @@ export default function LabPage() {
         <p className="text-xs uppercase tracking-wide text-muted-foreground">Related projects</p>
         <div className="mt-2 flex gap-4 text-sm">
           <Link href="/projects/personal-os" className="text-cyan-300 hover:underline">Personal OS</Link>
-          <Link href="/projects/audio-lab" className="text-cyan-300 hover:underline">Audio Lab</Link>
         </div>
       </section>
     </div>
