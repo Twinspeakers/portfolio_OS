@@ -6,7 +6,6 @@ import {
   LayoutDashboard,
   FolderOpen,
   FileText,
-  Image as ImageIcon,
   Link2,
   Orbit,
   PanelLeftClose,
@@ -19,7 +18,6 @@ const icons = {
   Dashboard: LayoutDashboard,
   Projects: FolderOpen,
   Editor: FileText,
-  "Image Lab": ImageIcon,
   Links: Link2,
   Lab: Orbit
 };

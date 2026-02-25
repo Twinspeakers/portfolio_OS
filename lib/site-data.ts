@@ -23,7 +23,6 @@ export const navItems = [
   { label: "Dashboard", href: "/" },
   { label: "Projects", href: "/projects" },
   { label: "Editor", href: "/editor" },
-  { label: "Image Lab", href: "/image-lab" },
   { label: "Links", href: "/links" },
   { label: "Lab", href: "/lab" }
 ];

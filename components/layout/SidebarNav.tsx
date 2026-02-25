@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, FolderOpen, FileText, Image as ImageIcon, Link2, Orbit, PanelLeftClose } from "lucide-react";
+import { LayoutDashboard, FolderOpen, FileText, Link2, Orbit, PanelLeftClose } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { navItems } from "@/lib/site-data";
 
@@ -10,7 +10,6 @@ const icons = {
   Dashboard: LayoutDashboard,
   Projects: FolderOpen,
   Editor: FileText,
-  "Image Lab": ImageIcon,
   Links: Link2,
   Lab: Orbit
 };
