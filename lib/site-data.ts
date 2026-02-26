@@ -28,7 +28,7 @@ export const quickLinks: QuickLink[] = [
     note: "Repos and issues",
     category: "Dev",
     pinned: true,
-    iconSrc: "https://github.githubassets.com/favicons/favicon.svg",
+    iconSrc: "/icons/github-mark-white.svg",
     deepLinks: [
       {
         title: "Your Repositories",
