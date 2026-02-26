@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LinkCard } from "@/components/cards/LinkCard";
 import { quickLinks } from "@/lib/site-data";
 
-const categories = ["Dev", "Design", "Audio", "Uni", "Admin"] as const;
+const categories = ["Dev", "Design", "Audio", "Admin"] as const;
 
 export const metadata: Metadata = {
   title: "Links",
@@ -19,9 +19,9 @@ export default function LinksPage() {
 
   return (
     <div className="space-y-8">
-      <section className="surface-elevated space-y-3 p-5">
-        <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Favorites</p>
-        <h2 className="text-2xl font-semibold">Pinned Links</h2>
+      <section className="surface-elevated accent-frame space-y-3 p-5">
+        <p className="section-kicker">Favorites</p>
+        <h2 className="section-title text-2xl">Pinned Links</h2>
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {pinned.map((item) => (
             <LinkCard key={`pinned-${item.name}`} item={item} />
@@ -31,7 +31,7 @@ export default function LinksPage() {
 
       {categories.map((category) => (
         <section key={category} className="space-y-3">
-          <h3 className="text-xl font-semibold">{category}</h3>
+          <h3 className="text-2xl font-semibold tracking-tight">{category}</h3>
           <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
             {quickLinks
               .filter((item) => item.category === category)

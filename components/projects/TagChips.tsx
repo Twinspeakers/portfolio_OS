@@ -22,8 +22,8 @@ export function TagChips({ tags, selected, toggle }: TagChipsProps) {
             className={cn(
               "rounded-full border px-3 py-1 text-xs transition",
               isActive
-                ? "border-primary bg-primary text-primary-foreground"
-                : "border-border bg-background text-muted-foreground hover:bg-accent"
+                ? "border-primary/65 bg-linear-to-r from-cyan-300 to-primary text-slate-950 shadow-[0_10px_20px_-16px_rgba(34,211,238,0.95)]"
+                : "border-border/75 bg-background/55 text-muted-foreground hover:border-primary/35 hover:bg-primary/12 hover:text-foreground"
             )}
           >
             {tag}

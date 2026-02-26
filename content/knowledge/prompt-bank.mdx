@@ -1,0 +1,117 @@
+---
+title: "Prompt Bank"
+slug: "prompt-bank"
+summary: "Reusable prompt templates for product planning, engineering execution, review, and writing."
+category: "Build"
+subcategory: "Prompting"
+tags: ["prompting", "workflow", "execution", "ai"]
+publishedAt: "2026-02-26"
+updatedAt: "2026-02-26"
+draft: false
+---
+
+## Purpose
+
+This page stores prompts I reuse often so I can move faster with consistent quality.
+Every prompt should be specific, outcome-driven, and easy to adapt.
+
+## Product Planning Prompts
+
+### Scope Clarifier
+
+```md
+I want to build: [feature]
+Context: [current state]
+Constraints: [time, stack, performance, UX, deployment]
+
+Please return:
+1. The smallest shippable version
+2. Clear acceptance criteria
+3. Major risks and tradeoffs
+4. A step-by-step implementation plan
+```
+
+### Roadmap Builder
+
+```md
+Given this feature set: [list]
+Create a phased roadmap with:
+1. Phase goals
+2. Dependencies
+3. Order rationale
+4. Validation checkpoints
+```
+
+## Engineering Prompts
+
+### Refactor Prompt
+
+```md
+Refactor this code for readability and maintainability without changing behavior:
+[paste code]
+
+Return:
+1. Updated code
+2. Key changes made
+3. Any risks/regressions to test
+```
+
+### Bug Hunt Prompt
+
+```md
+I have this issue: [symptoms]
+Relevant files: [paths]
+
+Please:
+1. Identify likely root causes
+2. Propose minimal fixes first
+3. Suggest tests to confirm the fix
+```
+
+## Review Prompts
+
+### Code Review Prompt
+
+```md
+Review the following changes with a bug-risk-first mindset.
+Focus on:
+- behavior regressions
+- edge cases
+- missing tests
+- performance risks
+
+Output:
+1. Findings ordered by severity
+2. File and line references
+3. Concrete fix suggestions
+```
+
+## Writing Prompts
+
+### Career Entry Prompt
+
+```md
+Help me draft a career update entry with this structure:
+1. Current direction
+2. What I shipped
+3. Lessons learned
+4. What I want to improve next
+
+Tone: clear, professional, direct.
+```
+
+### Direction Entry Prompt
+
+```md
+Help me write a Direction entry focused on:
+1. Problem that matters globally
+2. Who is affected and how
+3. Buildable interventions
+4. Practical next step I can take this month
+```
+
+## Maintenance Rules
+
+- Remove prompts that are vague or redundant.
+- Keep examples short and reusable.
+- Update this bank when a prompt produces clearly better outcomes.

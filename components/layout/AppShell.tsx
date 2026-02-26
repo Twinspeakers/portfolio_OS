@@ -6,12 +6,14 @@ import { SidebarNav } from "@/components/layout/SidebarNav";
 import { TopBar } from "@/components/layout/TopBar";
 import { IconDock } from "@/components/layout/IconDock";
 import { cn } from "@/lib/utils";
+import type { SearchEntry } from "@/lib/search/types";
 
 type AppShellProps = {
   children: ReactNode;
+  searchIndex: SearchEntry[];
 };
 
-export function AppShell({ children }: AppShellProps) {
+export function AppShell({ children, searchIndex }: AppShellProps) {
   const [navMode, setNavMode] = useState<"side" | "top">("side");
 
   useEffect(() => {
@@ -43,25 +45,21 @@ export function AppShell({ children }: AppShellProps) {
   return (
     <div
       className={cn(
-        // Consistent outer frame in both nav modes so collapsing the sidebar
-        // doesn't feel like switching to a totally different layout.
-        //
-        // - Outer frame: wide enough to hold the sidebar + a comfortable content width.
-        // - Inner content frame: consistent max width for the main column in BOTH modes.
-        "mx-auto min-h-screen w-full max-w-[96rem] px-4 py-4",
+        "relative mx-auto min-h-screen w-full max-w-[1860px] px-4 pb-8 pt-5 sm:px-6 lg:px-8",
         navMode === "side"
-          ? "grid grid-cols-1 gap-4 md:grid-cols-[250px_1fr]"
-          : "flex flex-col gap-4"
+          ? "grid grid-cols-1 gap-5 md:grid-cols-[280px_minmax(0,1fr)]"
+          : "flex flex-col gap-5"
       )}
     >
       {navMode === "side" ? <SidebarNav onCollapse={toggleNavMode} /> : null}
 
       <main className="min-w-0 pb-8">
-        <div className="mx-auto w-full max-w-7xl">
+        <div className={cn("w-full", navMode === "top" && "mx-auto max-w-7xl")}>
           <TopBar
             leftSlot={
               navMode === "top" ? <IconDock mode={navMode} onToggleMode={toggleNavMode} /> : undefined
             }
+            searchIndex={searchIndex}
           />
           {children}
         </div>

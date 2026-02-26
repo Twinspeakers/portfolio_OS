@@ -43,25 +43,25 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
 
   return (
     <article className="space-y-6">
-      <Link href="/projects" className="inline-flex text-sm text-cyan-300 hover:underline">
+      <Link href="/projects" className="inline-flex text-sm font-medium text-primary transition hover:text-accent">
         Back to Projects
       </Link>
 
       {coverSrc ? (
-        <section className="relative overflow-hidden rounded-2xl border border-border/70 bg-card/80 shadow-panel">
+        <section className="surface-card relative overflow-hidden p-0">
           <div className="aspect-[21/9] w-full">
             <img src={coverSrc} alt={coverAlt} className="h-full w-full object-cover" loading="lazy" />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/15 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#030814]/75 via-[#030814]/12 to-transparent" />
         </section>
       ) : null}
 
-      <header className="space-y-3 rounded-2xl border border-border/70 bg-card/80 p-5 shadow-panel">
+      <header className="surface-elevated accent-frame space-y-3 p-5">
         <h1 className="text-3xl font-semibold">{project.title}</h1>
         <p className="text-muted-foreground">{project.summary}</p>
       </header>
 
-      <section className="grid gap-4 rounded-2xl border border-border/70 bg-card/80 p-5 shadow-panel md:grid-cols-2">
+      <section className="surface-elevated grid gap-4 p-5 md:grid-cols-2">
         <div>
           <p className="text-xs uppercase tracking-wide text-muted-foreground">Status</p>
           <p className="mt-1 capitalize">{project.status}</p>
@@ -77,16 +77,16 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         <div>
           <p className="text-xs uppercase tracking-wide text-muted-foreground">Links</p>
           <div className="mt-1 flex flex-wrap gap-3 text-sm">
-            {links.repo ? <Link href={links.repo} target="_blank" className="text-cyan-300 hover:underline">GitHub</Link> : null}
-            {links.live ? <Link href={links.live} target="_blank" className="text-cyan-300 hover:underline">Live</Link> : null}
-            {links.docs ? <Link href={links.docs} target="_blank" className="text-cyan-300 hover:underline">Docs</Link> : null}
+            {links.repo ? <Link href={links.repo} target="_blank" className="font-medium text-primary transition hover:text-accent">GitHub</Link> : null}
+            {links.live ? <Link href={links.live} target="_blank" className="font-medium text-primary transition hover:text-accent">Live</Link> : null}
+            {links.docs ? <Link href={links.docs} target="_blank" className="font-medium text-primary transition hover:text-accent">Docs</Link> : null}
           </div>
         </div>
       </section>
 
       {project.gallery?.length ? <GalleryCarousel items={project.gallery} /> : null}
 
-      <section className="rounded-2xl border border-border/70 bg-card/80 p-5 shadow-panel">
+      <section className="surface-elevated p-5">
         <MDXContent source={project.body.raw} />
       </section>
     </article>

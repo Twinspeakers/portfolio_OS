@@ -1,5 +1,7 @@
 const repo = "portfolio_OS";
-const isProd = process.env.NODE_ENV === "production";
+const ciBasePath = process.env.GITHUB_ACTIONS === "true" ? `/${repo}` : "";
+const basePath = process.env.BASE_PATH ?? ciBasePath;
+const assetPrefix = basePath ? `${basePath}/` : "";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -12,13 +14,13 @@ const nextConfig = {
   // Next/Image needs this for static export
   images: { unoptimized: true },
 
-  // GitHub Pages serves your site from /<repo>/
-  basePath: isProd ? `/${repo}` : "",
-  assetPrefix: isProd ? `/${repo}/` : "",
+  // Base path defaults to GitHub Pages in CI; local builds can run without a prefix.
+  basePath,
+  assetPrefix,
 
   // Make basePath available to client components for GitHub Pages-safe asset URLs
   env: {
-    NEXT_PUBLIC_BASE_PATH: isProd ? `/${repo}` : ""
+    NEXT_PUBLIC_BASE_PATH: basePath
   }
 };
 

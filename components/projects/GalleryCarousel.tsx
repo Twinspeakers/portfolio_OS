@@ -69,7 +69,7 @@ export function GalleryCarousel({ items, className, title = "Gallery" }: Gallery
           <button
             type="button"
             onClick={() => go(-1)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background/60 backdrop-blur transition hover:bg-accent"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-border/75 bg-background/55 backdrop-blur transition hover:border-primary/50 hover:bg-primary/12"
             aria-label="Previous image"
           >
             <ChevronLeft className="h-4 w-4" />
@@ -77,7 +77,7 @@ export function GalleryCarousel({ items, className, title = "Gallery" }: Gallery
           <button
             type="button"
             onClick={() => go(1)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background/60 backdrop-blur transition hover:bg-accent"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-border/75 bg-background/55 backdrop-blur transition hover:border-primary/50 hover:bg-primary/12"
             aria-label="Next image"
           >
             <ChevronRight className="h-4 w-4" />
@@ -86,7 +86,7 @@ export function GalleryCarousel({ items, className, title = "Gallery" }: Gallery
             href={activeSrc}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex h-10 items-center gap-2 rounded-xl border border-border bg-background/60 px-3 text-sm text-muted-foreground backdrop-blur transition hover:bg-accent hover:text-foreground"
+            className="inline-flex h-10 items-center gap-2 rounded-2xl border border-border/75 bg-background/55 px-3 text-sm text-muted-foreground backdrop-blur transition hover:border-primary/50 hover:bg-primary/12 hover:text-foreground"
             aria-label="Open image in new tab"
           >
             <ExternalLink className="h-4 w-4" />
@@ -95,8 +95,8 @@ export function GalleryCarousel({ items, className, title = "Gallery" }: Gallery
         </div>
       </div>
 
-      <div className="relative overflow-hidden rounded-2xl border border-border/70 bg-card/80 shadow-panel">
-        <div className="aspect-[16/9] w-full">
+      <div className="surface-card relative overflow-hidden p-0">
+        <div className="aspect-video w-full">
           <img
             src={activeSrc}
             alt={active.alt ?? "Project screenshot"}
@@ -104,7 +104,7 @@ export function GalleryCarousel({ items, className, title = "Gallery" }: Gallery
             loading="lazy"
           />
         </div>
-        <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-slate-950/55 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#030814]/65 via-transparent to-transparent" />
 
         {(active.caption || active.alt) ? (
           <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -128,7 +128,7 @@ export function GalleryCarousel({ items, className, title = "Gallery" }: Gallery
                 onClick={() => setIndex(i)}
                 className={cn(
                   "relative shrink-0 overflow-hidden rounded-xl border transition",
-                  selected ? "border-cyan-400/60" : "border-border/70 hover:border-border"
+                  selected ? "border-primary/70" : "border-border/70 hover:border-primary/40"
                 )}
                 aria-label={`Select image ${i + 1}`}
               >
@@ -140,7 +140,7 @@ export function GalleryCarousel({ items, className, title = "Gallery" }: Gallery
                     loading="lazy"
                   />
                 </div>
-                {selected ? <div className="absolute inset-0 ring-2 ring-cyan-400/40" /> : null}
+                {selected ? <div className="absolute inset-0 ring-2 ring-primary/45" /> : null}
               </button>
             );
           })}

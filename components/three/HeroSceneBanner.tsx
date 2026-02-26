@@ -1,16 +1,4 @@
-"use client";
-
-import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
-
-const CanvasShell = dynamic(() => import("@/components/three/CanvasShell").then((m) => m.CanvasShell), {
-  ssr: false,
-  loading: () => <div className="h-[240px] w-full animate-pulse rounded-2xl border border-border/70 bg-muted" />
-});
-
-const SceneHeroOrb = dynamic(() => import("@/components/three/SceneHeroOrb").then((m) => m.SceneHeroOrb), {
-  ssr: false
-});
+import { HeroSceneCanvas } from "@/components/three/HeroSceneCanvas";
 
 type HeroSceneBannerProps = {
   eyebrow?: string;
@@ -23,52 +11,27 @@ export function HeroSceneBanner({
   title,
   description
 }: HeroSceneBannerProps) {
-  const rootRef = useRef<HTMLElement | null>(null);
-  const [shouldRenderScene, setShouldRenderScene] = useState(false);
-
-  useEffect(() => {
-    const root = rootRef.current;
-    if (!root) return;
-
-    if (typeof IntersectionObserver === "undefined") {
-      setShouldRenderScene(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const isVisible = entries.some((entry) => entry.isIntersecting);
-        setShouldRenderScene(isVisible);
-      },
-      { rootMargin: "120px 0px" }
-    );
-
-    observer.observe(root);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section ref={rootRef} className="surface-elevated relative overflow-hidden p-0">
-      <div className="absolute inset-0">
-        {shouldRenderScene ? (
-          <CanvasShell heightClass="h-[240px]" framed={false} className="h-full">
-            <SceneHeroOrb />
-          </CanvasShell>
-        ) : (
-          <div className="h-full w-full bg-gradient-to-br from-slate-950 via-slate-900 to-cyan-950" />
-        )}
+    <section className="surface-elevated accent-frame relative overflow-hidden p-0">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="h-full w-full bg-linear-to-br from-[#030611] via-[#071328] to-[#060d1b]" />
+      </div>
+      <div className="absolute inset-0 opacity-90">
+        <HeroSceneCanvas />
       </div>
 
-      {/* readability mask */}
-      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/55 to-slate-950/20" />
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-linear-to-r from-[#030611]/70 via-[#061127]/42 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-[#030611]/66 via-transparent to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_8%,hsl(var(--primary)/0.18),transparent_52%),radial-gradient(circle_at_92%_88%,hsl(var(--accent)/0.16),transparent_50%)]" />
+      <div className="pointer-events-none absolute -right-18 -top-20 h-64 w-64 rounded-full bg-cyan-300/18 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-22 left-18 h-56 w-56 rounded-full bg-orange-300/14 blur-3xl" />
 
-      <div className="relative z-10 flex h-[240px] flex-col justify-end gap-2 p-6">
-        <p className="text-xs uppercase tracking-[0.3em] text-cyan-200/90">{eyebrow}</p>
+      <div className="pointer-events-none relative z-10 flex h-60 flex-col justify-center gap-2 p-6 text-left">
+        <p className="section-kicker text-cyan-100/95">{eyebrow}</p>
         <h1 className="hero-title">
           <span>{title}</span>
         </h1>
-        <p className="max-w-2xl text-sm text-muted-foreground">{description}</p>
+        <p className="max-w-2xl text-sm text-slate-200/88">{description}</p>
       </div>
     </section>
   );

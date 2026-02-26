@@ -2,79 +2,175 @@
 @config "../tailwind.config.ts";
 
 :root {
-  --radius: 0.75rem;
-  --background: 210 20% 9%;
-  --foreground: 210 18% 95%;
-  --card: 218 28% 13%;
-  --card-foreground: 210 18% 95%;
-  --border: 213 20% 24%;
-  --muted: 215 20% 17%;
-  --muted-foreground: 214 14% 68%;
-  --primary: 88 95% 42%;
-  --primary-foreground: 210 20% 9%;
-  --accent: 215 30% 20%;
-  --accent-foreground: 210 18% 95%;
+  --radius: 0.95rem;
+  --background: 221 56% 8%;
+  --foreground: 210 36% 97%;
+  --card: 220 42% 12%;
+  --card-foreground: 210 36% 97%;
+  --border: 204 56% 25%;
+  --muted: 218 28% 17%;
+  --muted-foreground: 214 16% 74%;
+  --primary: 190 100% 56%;
+  --primary-foreground: 221 56% 8%;
+  --accent: 22 100% 58%;
+  --accent-foreground: 210 36% 97%;
+  --energy-cyan: 190 100% 56%;
+  --energy-amber: 22 100% 58%;
+  --energy-lime: 152 81% 47%;
+  --energy-rose: 348 93% 63%;
 
-  /* Editor theme tokens (customize these to taste). */
-  --editor-bg: #161616;
-  --editor-fg: #d4d4d4;
-  --editor-caret: #4fc1ff;
-  --editor-selection: rgba(79, 193, 255, 0.25);
-  --editor-gutter: #6b7280;
-  --editor-border: rgba(148, 163, 184, 0.25);
-  --editor-heading-1: #4fc1ff;
-  --editor-heading-2: #4fc1ff;
-  --editor-heading-3: #4fc1ff;
-  --editor-strong: #4fc1ff;
-  --editor-emphasis: #d7ba7d;
-  --editor-list: #4fc1ff;
-  --editor-code: #ce9178;
-  --editor-link: #4fc1ff;
-  --editor-quote: #ffffff;
-  --editor-blockquote: #6a9955;
-  --editor-separator: #808080;
-  --editor-comment: #6a9955;
+  --editor-bg: #11172a;
+  --editor-fg: #dce9ff;
+  --editor-caret: #44e9ff;
+  --editor-selection: rgba(68, 233, 255, 0.22);
+  --editor-gutter: #6d85ad;
+  --editor-border: rgba(124, 162, 212, 0.24);
+  --editor-heading-1: #44e9ff;
+  --editor-heading-2: #44e9ff;
+  --editor-heading-3: #44e9ff;
+  --editor-strong: #7cf6ff;
+  --editor-emphasis: #ffb370;
+  --editor-list: #44e9ff;
+  --editor-code: #ffc083;
+  --editor-link: #74d0ff;
+  --editor-quote: #dce9ff;
+  --editor-blockquote: #8efca5;
+  --editor-separator: #7f93b8;
+  --editor-comment: #8efca5;
 }
 
 * {
   @apply border-border;
 }
 
+html,
 body {
-  @apply bg-background text-foreground antialiased;
-  background:
-    radial-gradient(900px circle at 10% 10%, hsl(var(--primary) / 0.12), transparent 50%),
-    radial-gradient(700px circle at 90% 20%, hsl(220 90% 60% / 0.11), transparent 55%),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.98));
   min-height: 100vh;
 }
 
+body {
+  position: relative;
+  isolation: isolate;
+  overflow-x: hidden;
+  font-family:
+    var(--font-display),
+    "Sora",
+    "Segoe UI",
+    "Avenir Next",
+    sans-serif;
+  letter-spacing: -0.01em;
+  @apply bg-background text-foreground antialiased;
+  background:
+    radial-gradient(1000px circle at 8% -2%, hsl(var(--energy-cyan) / 0.26), transparent 58%),
+    radial-gradient(900px circle at 104% 8%, hsl(var(--energy-amber) / 0.22), transparent 55%),
+    radial-gradient(900px circle at 50% 120%, hsl(var(--energy-lime) / 0.16), transparent 64%),
+    linear-gradient(164deg, #030611 0%, #071328 48%, #060d1b 100%);
+}
+
+code,
+pre,
+.cm-editor,
+.cm-scroller {
+  font-family:
+    var(--font-mono),
+    "JetBrains Mono",
+    "SFMono-Regular",
+    ui-monospace,
+    monospace;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.2;
+  mix-blend-mode: screen;
+  background-image:
+    linear-gradient(rgba(131, 193, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(131, 193, 255, 0.08) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(circle at 30% 28%, black 35%, transparent 80%);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: -24% 10% auto -10%;
+  height: 72vh;
+  pointer-events: none;
+  z-index: -2;
+  filter: blur(70px);
+  background:
+    radial-gradient(circle at 32% 42%, hsl(var(--energy-cyan) / 0.34), transparent 58%),
+    radial-gradient(circle at 70% 18%, hsl(var(--energy-amber) / 0.28), transparent 56%),
+    radial-gradient(circle at 52% 80%, hsl(var(--energy-rose) / 0.16), transparent 58%);
+}
+
 a {
-  @apply outline-none ring-primary/30 transition focus:ring;
+  @apply outline-none transition focus:ring-2 focus:ring-primary/35;
 }
 
-.surface-card {
-  @apply rounded-2xl border border-border/70 bg-card/80 shadow-panel backdrop-blur;
+::selection {
+  background: hsl(var(--primary) / 0.36);
+  color: hsl(var(--foreground));
 }
 
+.surface-card,
 .surface-elevated {
-  @apply rounded-2xl border border-border/70 bg-card/80 shadow-panel backdrop-blur;
+  position: relative;
+  isolation: isolate;
+  @apply rounded-3xl border backdrop-blur-xl;
+  border-color: hsl(var(--border) / 0.42);
+  background:
+    linear-gradient(145deg, rgba(18, 33, 58, 0.86) 0%, rgba(12, 22, 39, 0.78) 45%, rgba(8, 14, 28, 0.88) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 18px 45px -30px rgba(0, 0, 0, 0.95),
+    0 0 0 1px rgba(34, 211, 238, 0.06);
+}
+
+.surface-card::after,
+.surface-elevated::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(180px circle at 14% 0%, rgba(87, 251, 255, 0.18), transparent 70%),
+    radial-gradient(190px circle at 98% 100%, rgba(255, 131, 76, 0.14), transparent 72%);
+  opacity: 0.85;
+  z-index: -1;
 }
 
 .surface-ghost {
-  @apply rounded-2xl border border-border/45 bg-transparent;
+  position: relative;
+  @apply rounded-3xl border backdrop-blur-md;
+  border-color: hsl(var(--border) / 0.32);
+  background: linear-gradient(145deg, rgba(11, 20, 37, 0.64), rgba(8, 14, 28, 0.58));
 }
 
 .card-hover {
-  @apply transition duration-200;
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.75, 0.3, 1),
+    border-color 260ms ease,
+    box-shadow 260ms ease,
+    background-color 260ms ease;
 }
 
 .card-hover:hover {
-  @apply -translate-y-0.5 border-border;
+  transform: translateY(-4px);
+  border-color: hsl(var(--primary) / 0.58);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 24px 50px -32px rgba(0, 0, 0, 0.95),
+    0 0 0 1px rgba(34, 211, 238, 0.2);
 }
 
 .surface-ghost.card-hover:hover {
-  @apply bg-card/35;
+  background: linear-gradient(145deg, rgba(13, 23, 41, 0.78), rgba(9, 16, 31, 0.7));
 }
 
 .accent-frame {
@@ -87,21 +183,36 @@ a {
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  background: linear-gradient(90deg, hsl(var(--primary) / 0.6), hsl(220 90% 60% / 0.6));
-  opacity: 0.32;
+  background: linear-gradient(120deg, hsl(var(--primary) / 0.68), hsl(var(--accent) / 0.58));
+  opacity: 0.34;
   pointer-events: none;
   z-index: -1;
 }
 
 .hero-title {
-  @apply text-3xl font-semibold tracking-tight sm:text-4xl;
+  @apply text-4xl font-semibold tracking-tight sm:text-5xl;
 }
 
 .hero-title span {
-  @apply bg-gradient-to-r from-foreground via-foreground to-foreground/60 bg-clip-text text-transparent;
+  background-image: linear-gradient(
+    100deg,
+    hsl(var(--foreground)) 0%,
+    hsl(var(--energy-cyan) / 0.96) 52%,
+    hsl(var(--energy-amber) / 0.9) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-/* Markdown preview (used by /editor). Intentionally lightweight (no typography plugin required). */
+.section-kicker {
+  @apply text-xs uppercase tracking-[0.32em] text-primary/90;
+}
+
+.section-title {
+  @apply text-3xl font-semibold tracking-tight sm:text-4xl;
+}
+
 .markdown-preview {
   @apply text-foreground;
 }
@@ -145,15 +256,15 @@ a {
 }
 
 .markdown-preview blockquote {
-  @apply mt-4 rounded-2xl border border-border bg-card/35 p-4 text-foreground/90;
+  @apply mt-4 rounded-2xl border border-primary/30 bg-card/45 p-4 text-foreground/90;
 }
 
 .markdown-preview pre {
-  @apply mt-4 overflow-auto rounded-2xl border border-border bg-background p-4 text-foreground;
+  @apply mt-4 overflow-auto rounded-2xl border border-border/70 bg-background/85 p-4 text-foreground;
 }
 
 .markdown-preview code {
-  @apply rounded-lg border border-border bg-background px-2 py-0.5;
+  @apply rounded-lg border border-border/70 bg-background/85 px-2 py-0.5;
 }
 
 .markdown-preview pre code {
@@ -162,16 +273,16 @@ a {
 
 
 .markdown-preview hr {
-  @apply my-6 border-border;
+  @apply my-6 border-border/70;
 }
 
 .markdown-preview table {
-  @apply mt-4 w-full overflow-hidden rounded-2xl border border-border;
+  @apply mt-4 w-full overflow-hidden rounded-2xl border border-border/75;
   border-collapse: collapse;
 }
 
 .markdown-preview thead {
-  @apply bg-card/35;
+  @apply bg-card/45;
 }
 
 .markdown-preview th {
@@ -183,7 +294,7 @@ a {
 }
 
 .markdown-preview tr + tr td {
-  @apply border-t border-border;
+  @apply border-t border-border/70;
 }
 
 .markdown-preview ul.contains-task-list {
@@ -199,5 +310,5 @@ a {
 }
 
 .markdown-preview img {
-  @apply mt-4 max-w-full rounded-2xl border border-border;
+  @apply mt-4 max-w-full rounded-2xl border border-border/75;
 }

@@ -12,7 +12,7 @@ export function StatusSelect({ value, onChange }: StatusSelectProps) {
     <select
       value={value}
       onChange={(event) => onChange(event.target.value as StatusValue)}
-      className="rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none ring-primary/30 transition focus:ring"
+      className="rounded-2xl border border-border/75 bg-background/55 px-3.5 py-2.5 text-sm outline-none transition focus:border-primary/55 focus:ring-2 focus:ring-primary/30"
       aria-label="Filter by status"
     >
       <option value="all">All status</option>
